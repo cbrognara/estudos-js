@@ -3,6 +3,7 @@ import { Header } from './components/Header'
 import { GlobalStyle } from './styles/global'
 import { useState } from 'react'
 import { NewTransactionModal } from './components/NewTransactionModal'
+import { TransactionsContext } from './TransactionsContext'
 
 function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
@@ -16,7 +17,7 @@ function App() {
     setIsNewTransactionModalOpen(false)
   }
   return (
-    <>
+    <TransactionsContext.Provider value={[]}>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <Dashboard />
       <NewTransactionModal
@@ -24,7 +25,7 @@ function App() {
         onRequestClose={handleCloseNewTransactionModal}
       />
       <GlobalStyle />
-    </>
+    </TransactionsContext.Provider>
   )
 }
 
